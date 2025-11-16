@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "intelligent-tutor": {
+      "command": "python3",
+      "args": ["-m", "canvas_mcp.main"],
+      "env": {
+        "CANVAS_BASE_URL": "https://uncc.instructure.com",
+        "CANVAS_API_TOKEN": "CANVAS_API_KEY",
+        "PYTHONPATH": "mcp_servers"
+      }
+    }
+  }
+}
