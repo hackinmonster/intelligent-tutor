@@ -22,6 +22,11 @@ from .tools.quizzes import (
     list_clean_quizzes,
     get_quiz_details,
 )
+from .tools.submissions import (
+    list_clean_submissions,
+    get_assignment_submissions,
+    get_submission,
+)
 
 mcp = FastMCP("canvas-mcp")
 
@@ -96,6 +101,21 @@ def quizzes(course_id: int):
 def quiz_details(course_id: int, quiz_id: int):
     """Return cleaned details for a single quiz."""
     return get_quiz_details(canvas, course_id, quiz_id)
+
+@mcp.tool
+def submissions(course_id: int):
+    """Return cleaned submissions for the current user."""
+    return list_clean_submissions(canvas, course_id)
+
+@mcp.tool
+def assignment_submissions(course_id: int, assignment_id: int):
+    """Return submissions for a single assignment."""
+    return get_assignment_submissions(canvas, course_id, assignment_id)
+
+@mcp.tool
+def submission(course_id: int, assignment_id: int, user_id: int):
+    """Return a single submission."""
+    return get_submission(canvas, course_id, assignment_id, user_id)
 
 
 if __name__ == "__main__":
