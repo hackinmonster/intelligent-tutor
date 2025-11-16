@@ -18,6 +18,10 @@ from .tools.modules import (
     list_clean_module_items,
     build_prerequisite_graph,
 )
+from .tools.quizzes import (
+    list_clean_quizzes,
+    get_quiz_details,
+)
 
 mcp = FastMCP("canvas-mcp")
 
@@ -82,6 +86,16 @@ def module_items(course_id: int, module_id: int):
 def prereq_graph(course_id: int):
     """Return module prerequisite graph for course flow analysis."""
     return build_prerequisite_graph(canvas, course_id)
+
+@mcp.tool
+def quizzes(course_id: int):
+    """Return cleaned list of quizzes for this course."""
+    return list_clean_quizzes(canvas, course_id)
+
+@mcp.tool
+def quiz_details(course_id: int, quiz_id: int):
+    """Return cleaned details for a single quiz."""
+    return get_quiz_details(canvas, course_id, quiz_id)
 
 
 if __name__ == "__main__":
