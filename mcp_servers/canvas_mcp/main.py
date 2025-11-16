@@ -13,6 +13,11 @@ from .tools.courses import (
     get_course_details,
     get_course_progress,
 )
+from .tools.modules import (
+    list_clean_modules,
+    list_clean_module_items,
+    build_prerequisite_graph,
+)
 
 mcp = FastMCP("canvas-mcp")
 
@@ -62,6 +67,22 @@ def course_details(course_id: int):
 def course_progress(course_id: int):
     """Return progress info for the current user in this course."""
     return get_course_progress(canvas, course_id)
+
+@mcp.tool
+def modules(course_id: int):
+    """Return clean module metadata."""
+    return list_clean_modules(canvas, course_id)
+
+@mcp.tool
+def module_items(course_id: int, module_id: int):
+    """Return clean module items for this module."""
+    return list_clean_module_items(canvas, course_id, module_id)
+
+@mcp.tool
+def prereq_graph(course_id: int):
+    """Return module prerequisite graph for course flow analysis."""
+    return build_prerequisite_graph(canvas, course_id)
+
 
 if __name__ == "__main__":
     mcp.run()
