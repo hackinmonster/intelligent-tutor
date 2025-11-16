@@ -2,7 +2,7 @@
 
 For testing, use MCP inspector: https://modelcontextprotocol.io/docs/tools/inspector
 
-You can install it globally like this:
+You can install it globally like  this:
 
 ```npm install -g @modelcontextprotocol/inspector```
 
