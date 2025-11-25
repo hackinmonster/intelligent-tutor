@@ -1,28 +1,34 @@
+import os
+import sys
+
+if __package__ in (None, ""):
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from fastmcp import FastMCP
-from .api.client import CanvasClient
-from .tools.overview import get_student_overview
-from .tools.assignments import (
+from canvas_mcp.api.client import CanvasClient
+from canvas_mcp.tools.overview import get_student_overview
+from canvas_mcp.tools.assignments import (
     get_assignments,
     list_clean_assignments,
     get_weak_grades,
     get_strong_grades,
     get_overdue,
    )
-from .tools.courses import (
+from canvas_mcp.tools.courses import (
     list_clean_courses,
     get_course_details,
     get_course_progress,
 )
-from .tools.modules import (
+from canvas_mcp.tools.modules import (
     list_clean_modules,
     list_clean_module_items,
     build_prerequisite_graph,
 )
-from .tools.quizzes import (
+from canvas_mcp.tools.quizzes import (
     list_clean_quizzes,
     get_quiz_details,
 )
-from .tools.submissions import (
+from canvas_mcp.tools.submissions import (
     list_clean_submissions,
     get_assignment_submissions,
     get_submission,
@@ -119,4 +125,4 @@ def submission(course_id: int, assignment_id: int, user_id: int):
 
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="http", port=8000)

@@ -1,4 +1,4 @@
-from .dates import is_overdue
+from canvas_mcp.tools.dates import is_overdue
 
 def get_assignments(canvas, course_id: int):
     """Return all assignments for a given course."""
